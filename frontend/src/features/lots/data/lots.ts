@@ -5,16 +5,16 @@ export const lots: Lot[] = [
     id: "1",
     code: "29062026-14-MEN001-095",
     date: "29/06/2026",
-    status: "En proceso",
+    status: "Pendiente",
 
-    product: "Cebolla Blanca",
+    product: "AAAAAAAAAAAA",
 
     exporter: "JIBAJA FOODS EIRL",
 
     importer:
       "COMERCIALIZADORA INTEGRAL DE PRODUCTOS AGRÍCOLAS S.A.S.",
 
-    destinationCountry: "Colombia",
+    destinationCountry: "AAAA",
 
     plant: "MULTISERVICIOS MENOTTI EIRL",
 
@@ -31,13 +31,13 @@ export const lots: Lot[] = [
     date: "28/06/2026",
     status: "Despachado",
 
-    product: "Palta Hass",
+    product: "BBBBBBBBBBBBB",
 
     exporter: "JIBAJA FOODS EIRL",
 
     importer: "IMPORTADORA PERÚ S.A.",
 
-    destinationCountry: "España",
+    destinationCountry: "BBBB",
 
     plant: "MULTISERVICIOS MENOTTI EIRL",
 
@@ -54,13 +54,13 @@ export const lots: Lot[] = [
     date: "27/06/2026",
     status: "Completado",
 
-    product: "Limón Tahití",
+    product: "CCCCCCCCCCCCCC",
 
     exporter: "JIBAJA FOODS EIRL",
 
     importer: "Fresh Market SAS",
 
-    destinationCountry: "Chile",
+    destinationCountry: "CCCC",
 
     plant: "MULTISERVICIOS MENOTTI EIRL",
 

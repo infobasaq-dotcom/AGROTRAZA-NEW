@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
   Boxes,
@@ -13,19 +14,43 @@ type MainLayoutProps = {
 };
 
 const menu = [
-  { icon: LayoutDashboard, text: "Dashboard" },
-  { icon: Boxes, text: "Lotes" },
-  { icon: FileText, text: "Documentos" },
-  { icon: Users, text: "Usuarios" },
-  { icon: BarChart3, text: "Reportes" },
-  { icon: Settings, text: "Configuración" },
+  {
+    icon: LayoutDashboard,
+    text: "Dashboard",
+    path: "/",
+  },
+  {
+    icon: Boxes,
+    text: "Lotes",
+    path: "/lotes",
+  },
+  {
+    icon: FileText,
+    text: "Documentos",
+    path: "/documentos",
+  },
+  {
+    icon: Users,
+    text: "Usuarios",
+    path: "/usuarios",
+  },
+  {
+    icon: BarChart3,
+    text: "Reportes",
+    path: "/reportes",
+  },
+  {
+    icon: Settings,
+    text: "Configuración",
+    path: "/configuracion",
+  },
 ];
 
-export default function MainLayout({ children }: MainLayoutProps) {
+export default function MainLayout({
+  children,
+}: MainLayoutProps) {
   return (
     <div className="flex h-screen bg-slate-100">
-
-      {/* Sidebar */}
 
       <aside className="w-64 bg-green-800 text-white flex flex-col">
 
@@ -43,21 +68,26 @@ export default function MainLayout({ children }: MainLayoutProps) {
             const Icon = item.icon;
 
             return (
-              <button
+              <NavLink
                 key={item.text}
-                className="w-full flex items-center gap-3 px-6 py-3 hover:bg-green-700 transition"
+                to={item.path}
+                className={({ isActive }) =>
+                  `w-full flex items-center gap-3 px-6 py-3 transition ${
+                    isActive
+                      ? "bg-green-900 font-semibold"
+                      : "hover:bg-green-700"
+                  }`
+                }
               >
                 <Icon size={20} />
                 {item.text}
-              </button>
+              </NavLink>
             );
           })}
 
         </nav>
 
       </aside>
-
-      {/* Contenido */}
 
       <div className="flex flex-col flex-1">
 
