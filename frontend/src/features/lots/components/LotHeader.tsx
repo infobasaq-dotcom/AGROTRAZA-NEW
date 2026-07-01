@@ -4,6 +4,8 @@ import {
   Package,
   Ship,
   Leaf,
+  Building2,
+  BadgeCheck,
 } from "lucide-react";
 
 import type { Lot } from "../types/Lot";
@@ -14,48 +16,63 @@ type Props = {
 
 export default function LotHeader({ lot }: Props) {
   return (
-    <div className="rounded-2xl bg-gradient-to-r from-green-700 via-green-600 to-emerald-500 text-white shadow-xl p-8">
+    <div className="overflow-hidden rounded-3xl bg-gradient-to-r from-green-800 via-green-700 to-emerald-600 shadow-2xl">
 
-      <div className="flex items-start justify-between">
+      {/* Cabecera */}
 
-        <div>
+      <div className="flex items-start justify-between p-8 text-white">
 
-          <div className="flex items-center gap-3">
+        <div className="flex items-center gap-5">
 
-            <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center">
+          <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-white/15 backdrop-blur">
 
-              <Leaf size={34} />
+            <Leaf size={42} />
 
-            </div>
+          </div>
 
-            <div>
+          <div>
 
-              <p className="text-sm uppercase tracking-widest opacity-80">
-                Expediente del Lote
-              </p>
+            <p className="text-sm uppercase tracking-[0.30em] text-green-100">
+              Expediente de Exportación
+            </p>
 
-              <h1 className="text-4xl font-black mt-1">
-                {lot.product}
-              </h1>
+            <h1 className="mt-2 text-5xl font-black">
+              {lot.product}
+            </h1>
 
-            </div>
+            <p className="mt-2 text-green-100">
+              Código del expediente:
+              <span className="ml-2 font-bold text-white">
+                {lot.code}
+              </span>
+            </p>
 
           </div>
 
         </div>
 
-        <span className="bg-white text-green-700 px-5 py-2 rounded-full font-bold shadow-lg">
-          {lot.status}
-        </span>
+        <div className="text-right">
+
+          <span className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 font-bold text-green-700 shadow-lg">
+
+            <BadgeCheck size={18} />
+
+            {lot.status}
+
+          </span>
+
+        </div>
 
       </div>
 
-      <div className="grid grid-cols-4 gap-6 mt-10">
+      {/* KPIs */}
+
+      <div className="grid grid-cols-5 gap-4 border-t border-white/15 bg-black/10 p-6">
 
         <InfoCard
           icon={<Package size={22} />}
-          title="Código"
-          value={lot.code}
+          title="Producto"
+          value={lot.product}
         />
 
         <InfoCard
@@ -76,6 +93,12 @@ export default function LotHeader({ lot }: Props) {
           value={lot.destinationCountry}
         />
 
+        <InfoCard
+          icon={<Building2 size={22} />}
+          title="Planta"
+          value={lot.plant}
+        />
+
       </div>
 
     </div>
@@ -94,19 +117,19 @@ function InfoCard({
   value,
 }: CardProps) {
   return (
-    <div className="bg-white/15 backdrop-blur-sm rounded-xl p-4">
+    <div className="rounded-2xl bg-white/10 p-5 text-white backdrop-blur">
 
-      <div className="flex items-center gap-2 opacity-90">
+      <div className="flex items-center gap-2 text-green-100">
 
         {icon}
 
-        <span className="text-sm">
+        <span className="text-sm font-medium">
           {title}
         </span>
 
       </div>
 
-      <p className="font-bold mt-3">
+      <p className="mt-3 text-lg font-bold leading-snug">
         {value}
       </p>
 
