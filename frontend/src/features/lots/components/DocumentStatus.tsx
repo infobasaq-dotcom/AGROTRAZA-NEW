@@ -1,3 +1,10 @@
+import {
+  CheckCircle2,
+  Clock3,
+  FileText,
+  TrendingUp,
+} from "lucide-react";
+
 import type { Lot } from "../types/Lot";
 
 type Props = {
@@ -9,25 +16,36 @@ export default function DocumentStatus({ lot }: Props) {
     (lot.completedDocuments / lot.totalDocuments) * 100
   );
 
+  const pending =
+    lot.totalDocuments - lot.completedDocuments;
+
   return (
-    <div className="bg-white rounded-xl shadow-sm border p-6 h-full">
+    <div className="rounded-2xl border border-slate-200 bg-white shadow-lg">
 
-      <h2 className="text-xl font-bold mb-6">
-        Estado Documental
-      </h2>
+      <div className="border-b p-6">
 
-      <div className="flex justify-center">
+        <h2 className="text-2xl font-bold text-slate-800">
+          Estado Documental
+        </h2>
 
-        <div className="w-36 h-36 rounded-full border-8 border-green-500 flex items-center justify-center">
+        <p className="mt-1 text-sm text-slate-500">
+          Seguimiento del expediente
+        </p>
+
+      </div>
+
+      <div className="flex justify-center p-8">
+
+        <div className="flex h-40 w-40 items-center justify-center rounded-full border-[10px] border-green-500">
 
           <div className="text-center">
 
-            <div className="text-3xl font-bold text-green-700">
+            <div className="text-4xl font-black text-green-700">
               {percentage}%
             </div>
 
-            <div className="text-sm text-slate-500">
-              Completo
+            <div className="mt-1 text-sm text-slate-500">
+              Completado
             </div>
 
           </div>
@@ -36,45 +54,104 @@ export default function DocumentStatus({ lot }: Props) {
 
       </div>
 
-      <div className="mt-8 space-y-4">
+      <div className="px-6">
 
-        <div className="flex justify-between">
+        <div className="mb-6 h-3 overflow-hidden rounded-full bg-slate-200">
 
-          <span className="text-green-700 font-medium">
-            ✔ Documentos completos
-          </span>
-
-          <span className="font-bold">
-            {lot.completedDocuments}
-          </span>
-
-        </div>
-
-        <div className="flex justify-between">
-
-          <span className="text-orange-600 font-medium">
-            ⏳ Pendientes
-          </span>
-
-          <span className="font-bold">
-            {lot.totalDocuments - lot.completedDocuments}
-          </span>
-
-        </div>
-
-        <div className="flex justify-between">
-
-          <span className="text-slate-500">
-            Total
-          </span>
-
-          <span className="font-bold">
-            {lot.totalDocuments}
-          </span>
+          <div
+            className="h-full rounded-full bg-gradient-to-r from-green-600 to-emerald-400"
+            style={{
+              width: `${percentage}%`,
+            }}
+          />
 
         </div>
 
       </div>
+
+      <div className="space-y-4 px-6 pb-6">
+
+        <StatusCard
+          icon={<CheckCircle2 size={20} />}
+          color="green"
+          title="Documentos completos"
+          value={lot.completedDocuments}
+        />
+
+        <StatusCard
+          icon={<Clock3 size={20} />}
+          color="amber"
+          title="Pendientes"
+          value={pending}
+        />
+
+        <StatusCard
+          icon={<FileText size={20} />}
+          color="blue"
+          title="Total de documentos"
+          value={lot.totalDocuments}
+        />
+
+        <StatusCard
+          icon={<TrendingUp size={20} />}
+          color="emerald"
+          title="Nivel de cumplimiento"
+          value={`${percentage}%`}
+        />
+
+      </div>
+
+    </div>
+  );
+}
+
+type StatusCardProps = {
+  icon: React.ReactNode;
+  title: string;
+  value: string | number;
+  color: "green" | "amber" | "blue" | "emerald";
+};
+
+function StatusCard({
+  icon,
+  title,
+  value,
+  color,
+}: StatusCardProps) {
+  const colors = {
+    green:
+      "bg-green-100 text-green-700",
+
+    amber:
+      "bg-amber-100 text-amber-700",
+
+    blue:
+      "bg-blue-100 text-blue-700",
+
+    emerald:
+      "bg-emerald-100 text-emerald-700",
+  };
+
+  return (
+    <div className="flex items-center justify-between rounded-xl border border-slate-200 p-4">
+
+      <div className="flex items-center gap-3">
+
+        <div
+          className={`rounded-lg p-2 ${colors[color]}`}
+        >
+          {icon}
+        </div>
+
+        <span className="font-medium text-slate-700">
+          {title}
+        </span>
+
+      </div>
+
+      <span className="text-lg font-bold text-slate-800">
+        {value}
+      </span>
 
     </div>
   );
