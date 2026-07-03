@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
   Boxes,
+  ClipboardList,
+  Factory,
   FileText,
   Users,
   BarChart3,
@@ -18,6 +20,16 @@ const menu = [
     icon: LayoutDashboard,
     text: "Dashboard",
     path: "/",
+  },
+  {
+    icon: ClipboardList,
+    text: "Recepciones",
+    path: "/recepciones",
+  },
+  {
+    icon: Factory,
+    text: "Producción",
+    path: "/produccion",
   },
   {
     icon: Boxes,
@@ -93,13 +105,9 @@ export default function MainLayout({
 
         <header className="h-16 bg-white border-b flex items-center justify-between px-8 shadow-sm">
 
-          <div>
-
-            <h2 className="font-bold text-slate-700">
-              Sistema de Trazabilidad
-            </h2>
-
-          </div>
+          <h2 className="font-bold text-slate-700">
+            Sistema de Trazabilidad
+          </h2>
 
           <div className="flex items-center gap-3">
 
