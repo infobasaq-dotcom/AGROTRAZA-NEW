@@ -1,14 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import MainLayout from "../layouts/MainLayout";
+
 import DashboardPage from "../pages/DashboardPage";
 import ReceptionPage from "../pages/ReceptionPage";
 import NewReceptionPage from "../pages/NewReceptionPage";
+import ReceptionDetailPage from "../pages/ReceptionDetailPage";
 import NewGuidePage from "../pages/NewGuidePage";
 import LotPage from "../pages/LotPage";
 import NewLotPage from "../pages/NewLotPage";
 import ProductionPage from "../pages/ProductionPage";
-
-import MainLayout from "../layouts/MainLayout";
 
 export default function AppRouter() {
   return (
@@ -38,6 +39,15 @@ export default function AppRouter() {
           element={
             <MainLayout>
               <NewReceptionPage />
+            </MainLayout>
+          }
+        />
+
+        <Route
+          path="/recepciones/:id"
+          element={
+            <MainLayout>
+              <ReceptionDetailPage />
             </MainLayout>
           }
         />

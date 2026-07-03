@@ -1,5 +1,7 @@
 import { create } from "zustand";
+
 import type { Guide } from "../features/receptions/types/guide";
+import { guides as initialGuides } from "../features/receptions/data/guides";
 
 interface GuideStore {
   guides: Guide[];
@@ -14,7 +16,7 @@ interface GuideStore {
 }
 
 export const useGuideStore = create<GuideStore>((set, get) => ({
-  guides: [],
+  guides: initialGuides,
 
   addGuide: (guide) =>
     set((state) => ({

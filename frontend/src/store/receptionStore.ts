@@ -11,9 +11,11 @@ interface ReceptionStore {
     id: string,
     data: Partial<Reception>
   ) => void;
+
+  getReception: (id: string) => Reception | undefined;
 }
 
-export const useReceptionStore = create<ReceptionStore>((set) => ({
+export const useReceptionStore = create<ReceptionStore>((set, get) => ({
   receptions: initialReceptions,
 
   addReception: (reception) =>
@@ -25,8 +27,16 @@ export const useReceptionStore = create<ReceptionStore>((set) => ({
     set((state) => ({
       receptions: state.receptions.map((reception) =>
         reception.id === id
-          ? { ...reception, ...data }
+          ? {
+              ...reception,
+              ...data,
+            }
           : reception
       ),
     })),
+
+  getReception: (id) =>
+    get().receptions.find(
+      (reception) => reception.id === id
+    ),
 }));

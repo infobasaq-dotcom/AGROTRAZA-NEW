@@ -42,16 +42,12 @@ export default function ReceptionPage() {
             <tr>
 
               <th className="p-4 text-left">Fecha</th>
-
               <th className="p-4 text-left">Proveedor</th>
-
               <th className="p-4 text-left">Producto</th>
-
               <th className="p-4 text-left">Guías</th>
-
               <th className="p-4 text-left">Peso Total</th>
-
               <th className="p-4 text-left">Estado</th>
+              <th className="p-4 text-center">Acciones</th>
 
             </tr>
 
@@ -66,31 +62,32 @@ export default function ReceptionPage() {
                 className="border-t hover:bg-slate-50"
               >
 
-                <td className="p-4">
-                  {reception.receptionDate}
-                </td>
+                <td className="p-4">{reception.receptionDate}</td>
 
-                <td className="p-4">
-                  {reception.supplier}
-                </td>
+                <td className="p-4">{reception.supplier}</td>
 
-                <td className="p-4">
-                  {reception.product}
-                </td>
+                <td className="p-4">{reception.product}</td>
 
-                <td className="p-4">
-                  {reception.totalGuides}
-                </td>
+                <td className="p-4">{reception.totalGuides}</td>
 
                 <td className="p-4">
                   {reception.totalWeight.toLocaleString()} kg
                 </td>
 
                 <td className="p-4">
-
                   <span className="rounded-full bg-green-100 px-3 py-1 text-sm text-green-700">
                     {reception.status}
                   </span>
+                </td>
+
+                <td className="p-4 text-center">
+
+                  <button
+                    onClick={() => navigate(`/recepciones/${reception.id}`)}
+                    className="rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white hover:bg-slate-900"
+                  >
+                    Ver
+                  </button>
 
                 </td>
 
